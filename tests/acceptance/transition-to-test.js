@@ -159,6 +159,13 @@ test('currentURL, currentRouteName, and isActive work', function(assert) {
 });
 
 test('urlFor works', function(assert) {
+  this.owner.register('controller:basic', Controller.extend({
+    init() {
+      this._super(...arguments);
+      assert.step(this._debugContainerKey);
+    }
+  }));
+
   visit('/');
 
   andThen(() => {
@@ -182,5 +189,7 @@ test('urlFor works', function(assert) {
       }),
       '/dynamic/1?huzzah=lol'
     );
+
+    assert.verifySteps(['controller:application', 'controller:parent', 'controller:parent/index']);
   });
 });
