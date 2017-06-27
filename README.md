@@ -28,6 +28,11 @@ export default Ember.Component.extend({
 });
 ```
 
+## Known Incompatibilities
+
+This addon provides the router service and the primary APIs that shipped in Ember 2.15. Unfortunately, there is
+at least one scenario that is not easily polyfilled: avoiding the eager controller instantiation for URL generation.
+
 ## Migration
 
 ### Applications
