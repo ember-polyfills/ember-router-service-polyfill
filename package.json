@@ -1,7 +1,7 @@
 {
   "name": "ember-router-service-polyfill",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Provides a best effort polyfill for the ember-routing-router-service feature.",
   "keywords": [
     "ember-addon"
   ],
