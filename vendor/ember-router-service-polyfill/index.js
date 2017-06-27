@@ -54,7 +54,9 @@
 
     isActive(/* routeName, ...models, options */) {
       let { routeName, models, queryParams } = this._extractArguments(...arguments);
-      let routerMicrolib = this._router._routerMicrolib;
+      // this._router._routerMicrolib => 2.13+
+      // this._router.router => < 2.13
+      let routerMicrolib = this._router._routerMicrolib || this._router.router;
       let state = routerMicrolib.state;
 
       if (!routerMicrolib.isActiveIntent(routeName, models, null)) { return false; }
