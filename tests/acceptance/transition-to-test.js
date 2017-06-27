@@ -2,6 +2,7 @@ import { test } from 'qunit';
 import Ember from 'ember';
 import { history } from '../../locations/none-with-history-tracking';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import hasEmberVersion from 'ember-test-helpers/has-ember-version';
 
 const { Controller } = Ember;
 
@@ -63,37 +64,39 @@ test('replaceWith works', function(assert) {
     });
 });
 
-test('using transitionTo/replaceWith with query params does not remove default values', function(assert) {
-  this.owner.register('controller:parent/child', Controller.extend({
-    queryParams: ['sort'],
-    sort: 'ASC'
-  }));
+if (hasEmberVersion(2, 16)) {
+  test('using transitionTo/replaceWith with query params does not remove default values', function(assert) {
+    this.owner.register('controller:parent/child', Controller.extend({
+      queryParams: ['sort'],
+      sort: 'ASC'
+    }));
 
-  return visit('/')
-    .then(() => {
-      return this.routerService.transitionTo('parent.child', {
-        queryParams: {
-          sort: 'ASC'
-        }
+    return visit('/')
+      .then(() => {
+        return this.routerService.transitionTo('parent.child', {
+          queryParams: {
+            sort: 'ASC'
+          }
+        });
+      })
+      .then(() => {
+        assert.equal(currentURL(), '/child?sort=ASC');
+        return this.routerService.transitionTo('parent.sister');
+      })
+      .then(() => {
+        assert.equal(currentURL(), '/sister');
+        return this.routerService.replaceWith('parent.child', {
+          queryParams: {
+            sort: 'DESC'
+          }
+        });
+      })
+      .then(() => {
+        assert.equal(currentURL(), '/child?sort=DESC');
+        assert.deepEqual(this.state, ['/', '/child?sort=ASC', '/child?sort=DESC']);
       });
-    })
-    .then(() => {
-      assert.equal(currentURL(), '/child?sort=ASC');
-      return this.routerService.transitionTo('parent.sister');
-    })
-    .then(() => {
-      assert.equal(currentURL(), '/sister');
-      return this.routerService.replaceWith('parent.child', {
-        queryParams: {
-          sort: 'DESC'
-        }
-      });
-    })
-    .then(() => {
-      assert.equal(currentURL(), '/child?sort=DESC');
-      assert.deepEqual(this.state, ['/', '/child?sort=ASC', '/child?sort=DESC']);
-    });
-});
+  });
+}
 
 test('currentURL, currentRouteName, and isActive work', function(assert) {
   assert.expect(24);
