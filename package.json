@@ -1,6 +1,6 @@
 {
   "name": "ember-router-service-polyfill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides a best effort polyfill for the ember-routing-router-service feature.",
   "keywords": [
     "ember-addon"
