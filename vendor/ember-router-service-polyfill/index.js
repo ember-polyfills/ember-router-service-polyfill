@@ -87,7 +87,7 @@
     return typeof str === 'string' && (str === '' || str[0] === '/');
   }
 
-  Ember.Application.reopen({
+  Ember.Application.reopenClass({
     buildRegistry() {
       let registry = this._super(...arguments);
 
