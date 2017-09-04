@@ -5,8 +5,13 @@
   "keywords": [
     "ember-addon"
   ],
+  "homepage": "https://github.com/rwjblue/ember-router-service-polyfill#readme",
+  "bugs": {
+    "url": "https://github.com/rwjblue/ember-router-service-polyfill/issues"
+  },
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue.com>",
+  "main": "index.js",
   "directories": {
     "test": "tests"
   },
@@ -47,10 +52,5 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "main": "index.js",
-  "bugs": {
-    "url": "https://github.com/rwjblue/ember-router-service-polyfill/issues"
-  },
-  "homepage": "https://github.com/rwjblue/ember-router-service-polyfill#readme"
+  }
 }
