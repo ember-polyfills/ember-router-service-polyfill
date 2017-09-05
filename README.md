@@ -53,6 +53,7 @@ and doing a major version bump.
 This addon is tested against quite a few past Ember versions. Check `config/ember-try.js` for the current list, but
 the list of supported Ember versions at the time of authoring was:
 
+* 2.4
 * 2.8
 * 2.12
 * 2.13
