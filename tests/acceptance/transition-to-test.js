@@ -114,8 +114,8 @@ test('currentURL, currentRouteName, and isActive work', function(assert) {
     let expectedURL = args.pop();
 
     andThen(() => {
-      let actualURL = currentURL();
-      let actualRouteName = currentRouteName();
+      let actualURL = routerService.get('currentURL');
+      let actualRouteName = routerService.get('currentRouteName');
 
       let isActive = routerService.isActive(expectedRouteName, ...dynamicArgs);
 
@@ -123,19 +123,21 @@ test('currentURL, currentRouteName, and isActive work', function(assert) {
         result: isActive,
         expected: true,
         actual: isActive,
-        message: `isActive should be true for ${expectedURL}`
+        message: `isActive should be true for ${expectedRouteName}`
       });
 
       assert.pushResult({
         result: actualURL === expectedURL,
         expected: expectedURL,
-        actual: actualURL
+        actual: actualURL,
+        message: `currentURL should be ${expectedURL}`
       });
 
       assert.pushResult({
         result: actualRouteName=== expectedRouteName,
         expected: expectedRouteName,
-        actual: actualRouteName
+        actual: actualRouteName,
+        message: `currentRouteName should be ${expectedRouteName}`
       });
     });
   }
