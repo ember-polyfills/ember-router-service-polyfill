@@ -3,7 +3,7 @@
   'use strict';
 
   const { Service, computed } = Ember;
-  const { readOnly } = computed;
+  const { readOnly, or } = computed;
 
   function shallowEqual(a, b) {
     let k;
@@ -18,7 +18,7 @@
 
   const RouterService = Service.extend({
     currentRouteName: readOnly('_router.currentRouteName'),
-    currentURL: readOnly('_router.currentURL'),
+    currentURL: or('_router.currentURL', '_router.url'),
     location: readOnly('_router.location'),
     rootURL: readOnly('_router.rootURL'),
     _router: null,
