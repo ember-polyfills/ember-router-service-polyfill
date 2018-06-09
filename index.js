@@ -17,7 +17,7 @@ module.exports = {
 
     if (emberVersion.lt('2.16.0-alpha.1')) {
       this.import('vendor/ember-router-service-polyfill/index.js');
-    } else if (this.parent === this.project && !hasBeenWarned){
+    } else if (this.parent === this.project && !hasBeenWarned && !this.project.isEmberCLIAddon()) {
       this.ui.writeWarnLine('ember-router-service-polyfill is not required for Ember 2.16.0-beta.1 and later, please remove from your `package.json`.');
       hasBeenWarned = true;
     }
